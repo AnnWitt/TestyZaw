@@ -5,6 +5,8 @@ import static org.mockito.Mockito.*;
 
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -46,6 +48,27 @@ class UserServiceTest {
         Long notExistingID=33L;
         when(userRepository.findById(notExistingID)).thenReturn(Optional.empty());
         assertThrows(Exception.class, ()->userService.getUserById(notExistingID));
-
     }
+
+    @Test
+    void shouldThrowsExceptionWhenAddingNotValidUser() {
+        when(userValidator.isUserValid(any())).thenReturn(false);
+        assertThrows(Exception.class, () -> userService.addUser(new User(1L, "Dupa", "Blada")));
+    }
+
+    @Test
+    void shouldAddUser() {
+        User user = new User("Dupa", "Blada");
+        User savedUser = new User(2324L, user.getFirstName(), user.getLastName());
+
+        when(userValidator.isUserValid(user)).thenReturn(true);
+        when(userRepository.addUser(user)).thenReturn(savedUser);
+
+        User addedUser = userService.addUser(user);
+
+        assertEquals(savedUser, addedUser);
+        assertNotSame(user, addedUser);
+    }
+
+
 }
