@@ -1,22 +1,30 @@
 package com.sda.testing.solution.parametrized;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 class PalindromeCheckerTest {
 
-	@ParameterizedTest
-	@CsvSource({"sedes, true","kajak, true", "costam, false", "kobyla ma maly bok, true", "Kamil Ślimak, true"})
-	void shouldCheckWhetherStringIsAPalindrome(String text, boolean expected) {
-		//when
-		boolean actual = PalindromeChecker.isPalindrome(text);
+    @ParameterizedTest
+    @CsvSource({"słowo,false","anna,true","inne,false","kobyła ma mały bok,true","kamil ślimak,true"})
+    void isPalidromeTrueCsv(String string, boolean expected){
+        //when
+        boolean actual=PalindromeChecker.isPalindrome(string);
+        //then
+        assertEquals(expected,actual);
+    }
 
-		//then
-		assertEquals(expected, actual);
-	}
+    @ParameterizedTest
+    @CsvFileSource(resources= "/testdata/palidroms.csv")
+    void isPalidromeTrueCsvSource(String string, boolean expected){
+        //when
+        boolean actual=PalindromeChecker.isPalindrome(string);
+        //then
+        assertEquals(expected,actual);
+    }
 
 	@ParameterizedTest
 	@CsvFileSource(resources = "/testdata/palindroms.csv")

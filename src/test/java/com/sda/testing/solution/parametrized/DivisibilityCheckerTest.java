@@ -10,15 +10,14 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class DivisibilityCheckerTest {
 
-	@ParameterizedTest(name = "run #{index} with [{arguments}]" )
-	@ValueSource(ints = {0, 3, 9, 12, 15, -3, -6})
-	void shouldBeDivisibleBy3(int number) {
-		//when
-		boolean actual = DivisibilityChecker.isDivisibleBy3(number);
-
-		//then
-		assertTrue(actual);
-	}
+    @ParameterizedTest(name = "run #{index} with [{arguments{]")// po kolei rozne wartosci
+    @ValueSource(ints = {-3,-6,0,3,9,12,15,10,7}) //załatwia given
+    void shouldBeDivisibleBy3(int number) {
+        //when
+        boolean actual = DivisibilityChecker.isDivisibleBy3(number);
+        //then
+        assertTrue(actual);
+    }
 
 	@ParameterizedTest
 	@ValueSource(ints = {1, 2, 37, -4, -8, -17})

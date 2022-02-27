@@ -10,7 +10,7 @@ class DivisibilityCheckerFirstTest {
 	@Test
 	void shouldBeDivisibleBy3() {
 		//given
-		int i = 12;
+		int i = 9;
 
 		//when
 		boolean actual = DivisibilityChecker.isDivisibleBy3(i);
@@ -22,23 +22,20 @@ class DivisibilityCheckerFirstTest {
 	@Test
 	void shouldNotBeDivisibleBy3() {
 		//given
-		int i = 11;
-
+		int i = 4;
 		//when
 		boolean actual = DivisibilityChecker.isDivisibleBy3(i);
-
 		//then
 		assertFalse(actual);
+
 	}
 
 	@Test
 	void shouldBeDivisibleBy3NegativeNumber() {
 		//given
-		int i = -12;
-
+		int i = -6;
 		//when
 		boolean actual = DivisibilityChecker.isDivisibleBy3(i);
-
 		//then
 		assertTrue(actual);
 	}
@@ -46,11 +43,9 @@ class DivisibilityCheckerFirstTest {
 	@Test
 	void shouldNotBeDivisibleBy3NegativeNumber() {
 		//given
-		int i = -11;
-
+		int i = -4;
 		//when
 		boolean actual = DivisibilityChecker.isDivisibleBy3(i);
-
 		//then
 		assertFalse(actual);
 	}
@@ -59,10 +54,8 @@ class DivisibilityCheckerFirstTest {
 	void zeroShouldBeDivisibleBy3() {
 		//given
 		int i = 0;
-
 		//when
 		boolean actual = DivisibilityChecker.isDivisibleBy3(i);
-
 		//then
 		assertTrue(actual);
 	}
